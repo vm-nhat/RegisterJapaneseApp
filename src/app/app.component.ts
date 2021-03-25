@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'RegisterJapaneseApp';
+  // hidebav = false;
+  showmenu: boolean = true;
+  fnShowMenu(value)
+  {
+    this.showmenu = value;
+    console.log( this.showmenu);
+
+  }
 }
+

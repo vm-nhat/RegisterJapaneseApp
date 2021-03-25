@@ -1,7 +1,8 @@
 
 
 <div class="d-flex" id="wrapper">
-<app-sidebar-app></app-sidebar-app>
-<app-list-of-classes></app-list-of-classes>
+<app-sidebar-app *ngIf = "showmenu" ></app-sidebar-app>
+<app-list-of-classes (hidebav)="fnShowMenu($event)"></app-list-of-classes>
 </div>
 
+<!-- <router-outlet></router-outlet> -->
