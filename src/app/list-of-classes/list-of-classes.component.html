@@ -22,13 +22,16 @@
         <div class="form-group col-4">
 
           <label>Chọn cấp độ: </label>
-          <select type="text" class="form-control  col-12">
+          <select type="text" class="form-control  col-12" formControlName="currentCourses" >
           <option value ="">--Tất cả--</option>
-          <option value="N1">N1</option>
+          <option *ngFor= "let i of levels" value = "{{i.name}}" >{{i.name}}</option>
+
+          <!-- <option value="N1">N1</option>
           <option value="N2">N2</option>
           <option value="N3">N3</option>
           <option value="N4">N4</option>
-          <option value="N5"> N5</option>
+          <option value="N5"> N5</option> -->
+
           </select>
 
         </div>
@@ -37,11 +40,12 @@
           <div class="row">
             <div class="input-group col-sm-8">
               <input  type="text" class="form-control  col-12" >
+              <div class="input-group-append">
+                <mat-icon class="iconSearch">search
+                </mat-icon>
+              </div>
             </div>
-            <div class="input-group-append">
-              <mat-icon class="iconSearch">search
-              </mat-icon>
-            </div>
+
           </div>
         </div>
       </div>
@@ -60,14 +64,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let courses of currentCourses">
           <th ></th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td>{{courses.coursesName}}</td>
+          <td>{{courses.coursesLevel}}</td>
+          <td>{{courses.startDate | date:'yyyy-MM-dd'}}</td>
+          <td>{{courses.endDate | date:'yyyy-MM-dd'}}</td>
+          <td>{{courses.teacher}}</td>
+          <td>{{courses.room}}</td>
           <td><button >Chi tiết</button></td>
         </tr>
       </tbody>
