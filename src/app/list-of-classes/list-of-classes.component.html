@@ -22,15 +22,15 @@
         <div class="form-group col-4">
 
           <label>Chọn cấp độ: </label>
-          <select type="text" class="form-control  col-12" formControlName="currentCourses" >
+          <select (change) = "getLevel(level,other)" [(ngModel)]="level" type="text" class="form-control  col-12" name="level">
           <option value ="">--Tất cả--</option>
-          <option *ngFor= "let i of levels" value = "{{i.name}}" >{{i.name}}</option>
+          <!-- <option *ngFor= "let i of levels" value = "{{i.name}}" >{{i.name}}</option> -->
 
-          <!-- <option value="N1">N1</option>
+          <option value="N1">N1</option>
           <option value="N2">N2</option>
           <option value="N3">N3</option>
           <option value="N4">N4</option>
-          <option value="N5"> N5</option> -->
+          <option value="N5"> N5</option>
 
           </select>
 
@@ -39,9 +39,9 @@
           <label for="phone">Tìm kiếm: </label>
           <div class="row">
             <div class="input-group col-sm-8">
-              <input  type="text" class="form-control  col-12" >
+              <input  type="text" class="form-control  col-12" [(ngModel)]="other" [ngModelOptions]="{standalone: true}" >
               <div class="input-group-append">
-                <mat-icon class="iconSearch">search
+                <mat-icon class="iconSearch" (click) = seachOther(level,other)>search
                 </mat-icon>
               </div>
             </div>
