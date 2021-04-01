@@ -1,10 +1,10 @@
-export class courses  {
-  id : number ;
+export interface courses  {
 	coursesCode : string;
-	coursesName : string;
 	coursesLevel : string;
-	startDate : Date ;
-	endDate : Date;
-	teacher : string ;
+  coursesName : string;
+  endDate : Date;
+  id : number ;
 	room : string;
+  startDate : Date ;
+	teacher : string ;
 }

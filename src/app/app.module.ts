@@ -9,11 +9,13 @@ import { SidebarAppComponent } from './sidebar-app/sidebar-app.component';
 import {MatIconModule} from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { DetailOfClassComponent } from './detail-of-class/detail-of-class.component';
 @NgModule({
   declarations: [
     AppComponent,
     ListOfClassesComponent,
-    SidebarAppComponent
+    SidebarAppComponent,
+    DetailOfClassComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +24,7 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     HttpClientModule,
     CommonModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

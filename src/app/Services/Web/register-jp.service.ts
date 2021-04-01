@@ -11,6 +11,7 @@ export class RegisterJpService {
 
   private baseUrl = 'http://localhost:9999/hrm/';
 
+
   constructor(private http: HttpClient) { }
 
   getAllCourses(): Observable<any> {
@@ -18,10 +19,10 @@ export class RegisterJpService {
   }
 
   getWithConditions(level: string, other: string): Observable<any> {
-    if (level == undefined) {
+    if (level === undefined) {
       level = "";
     } else
-    if (other == undefined) {
+    if (other === undefined) {
       other = "";
     }
     const params = new HttpParams()
@@ -30,5 +31,13 @@ export class RegisterJpService {
 
     return this.http.get(`${this.baseUrl}` + 'searchFilter', {params});
   }
+
+  getCoursesById(id: number): Observable<any>{
+      console.log(id)
+
+      return this.http.get(`${this.baseUrl}` +"/"+ id);
+
+
+    }
 
 }

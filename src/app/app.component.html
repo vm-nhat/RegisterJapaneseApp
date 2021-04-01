@@ -1,8 +1,16 @@
-
-
 <div class="d-flex" id="wrapper">
-<app-sidebar-app *ngIf = "showmenu" id="sidebar-wrapper" ></app-sidebar-app>
-<app-list-of-classes class = "container-fluid" (hidebav)="fnShowMenu($event)" id="page-content-wrapper" ></app-list-of-classes>
+  <app-sidebar-app *ngIf="showmenu"></app-sidebar-app>
+  <!-- <app-list-of-classes  id="page-content-wrapper">
+  </app-list-of-classes> -->
+  <div id="page-content-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+      <div class="" id="">
+        <button (click)="showNav()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span class="font-weight-bold h5">DANH SÁCH CÁC LỚP HỌC TIẾNG NHẬT</span>
+      </div>
+    </nav>
+    <router-outlet></router-outlet>
+  </div>
 </div>
-
-<!-- <router-outlet></router-outlet> -->

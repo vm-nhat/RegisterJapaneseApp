@@ -1,83 +1,71 @@
-
 <!-- Page Content -->
-<div id="page-content-wrapper">
+<!-- <div class="d-flex" id="wrapper">
+  <app-sidebar-app *ngIf="showMenu" id="sidebar-wrapper"></app-sidebar-app> -->
+  <div>
+    <div class="container-fluid">
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-    <div class="" id="">
-      <button (click)="showNav()">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span class="font-weight-bold h5">DANH SÁCH CÁC LỚP HỌC TIẾNG NHẬT</span>
-    </div>
+      <form class="col-12">
 
+        <div class="row ">
 
-  </nav>
+          <div class="form-group col-4">
 
-  <div class="container-fluid">
-
-    <form  class="col-12">
-
-      <div class="row ">
-
-        <div class="form-group col-4">
-
-          <label>Chọn cấp độ: </label>
-          <select (change) = "getLevel(level,other)" [(ngModel)]="level" type="text" class="form-control  col-12" name="level">
-          <option value ="">--Tất cả--</option>
-          <!-- <option *ngFor= "let i of levels" value = "{{i.name}}" >{{i.name}}</option> -->
-
-          <option value="N1">N1</option>
+            <label>Chọn cấp độ: </label>
+            <select (change)="getLevel(level,other)" [(ngModel)]="level" type="text" class="form-control  col-12"
+              name="level">
+              <option value="">--Tất cả--</option>
+              <option *ngFor="let i of levels" value="{{i.name}}">{{i.name}}</option>
+              <!-- <option value="N1">N1</option>
           <option value="N2">N2</option>
           <option value="N3">N3</option>
           <option value="N4">N4</option>
-          <option value="N5"> N5</option>
+          <option value="N5"> N5</option> -->
 
-          </select>
-
-        </div>
-        <div class= "form-group col-6">
-          <label for="phone">Tìm kiếm: </label>
-          <div class="row">
-            <div class="input-group col-sm-8">
-              <input  type="text" class="form-control  col-12" [(ngModel)]="other" [ngModelOptions]="{standalone: true}" >
-              <div class="input-group-append">
-                <mat-icon class="iconSearch" (click) = seachOther(level,other)>search
-                </mat-icon>
-              </div>
-            </div>
+            </select>
 
           </div>
+          <div class="form-group col-6">
+            <label for="phone">Tìm kiếm: </label>
+            <div class="row">
+              <div class="input-group col-sm-8">
+                <input type="text" class="form-control  col-12" [(ngModel)]="other"
+                  [ngModelOptions]="{standalone: true}">
+                <div class="input-group-append">
+                  <mat-icon class="iconSearch" (click)=seachOther(level,other)>search
+                  </mat-icon>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
-      </div>
-    </form>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">STT</th>
-          <th scope="col">Tên lớp học</th>
-          <th scope="col">Cấp độ</th>
-          <th scope="col">Ngày bắt đầu</th>
-          <th scope="col">Ngày kết thúc</th>
-          <th scope="col">Tên giáo viên</th>
-          <th scope="col">Phòng học</th>
-          <th scope="col">Thao tác</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let courses of currentCourses">
-          <th ></th>
-          <td>{{courses.coursesName}}</td>
-          <td>{{courses.coursesLevel}}</td>
-          <td>{{courses.startDate | date:'yyyy-MM-dd'}}</td>
-          <td>{{courses.endDate | date:'yyyy-MM-dd'}}</td>
-          <td>{{courses.teacher}}</td>
-          <td>{{courses.room}}</td>
-          <td><button >Chi tiết</button></td>
-        </tr>
-      </tbody>
-    </table>
+      </form>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Tên lớp học</th>
+            <th scope="col">Cấp độ</th>
+            <th scope="col">Ngày bắt đầu</th>
+            <th scope="col">Ngày kết thúc</th>
+            <th scope="col">Tên giáo viên</th>
+            <th scope="col">Phòng học</th>
+            <th scope="col">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let courses of currentCourses">
+            <th></th>
+            <td>{{courses.coursesName}}</td>
+            <td>{{courses.coursesLevel}}</td>
+            <td>{{courses.startDate | date:'yyyy-MM-dd'}}</td>
+            <td>{{courses.endDate | date:'yyyy-MM-dd'}}</td>
+            <td>{{courses.teacher}}</td>
+            <td>{{courses.room}}</td>
+            <td><button (click)="toDetail(courses.id)">Chi tiết</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-
-
-</div>
-
+<!-- </div> -->

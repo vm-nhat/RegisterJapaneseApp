@@ -3,6 +3,7 @@ import { courses } from './../entity/courses';
 import { RegisterJpService } from './../Services/Web/register-jp.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { formatDate } from "@angular/common";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-of-classes',
@@ -10,9 +11,9 @@ import { formatDate } from "@angular/common";
   styleUrls: ['./list-of-classes.component.scss']
 })
 export class ListOfClassesComponent implements OnInit {
-  @Output() hidebav = new EventEmitter();
-  showMenu: boolean = true;
-  currentCourses: courses;
+  // @Output() hidebav = new EventEmitter();
+  // showMenu: boolean = true;
+  currentCourses: courses[] = [];
   levels: Level[] = [
     {
       id: 1,
@@ -39,15 +40,10 @@ export class ListOfClassesComponent implements OnInit {
   level;
   other;
   public data;
-  constructor(private registerjpservice: RegisterJpService) { }
+  constructor(private registerjpservice: RegisterJpService, private router: Router) { }
 
   ngOnInit(): void {
     this.getAllCourses();
-  }
-
-  showNav() {
-    this.showMenu = !this.showMenu;
-    this.hidebav.emit(this.showMenu);
   }
 
   getAllCourses() {
@@ -55,6 +51,8 @@ export class ListOfClassesComponent implements OnInit {
       .subscribe(
         data => {
           this.currentCourses = data;
+          console.log(this.currentCourses);
+
           // định dạng yyyy-mm-dd (convert từ ulti sang sql)
           // đã được xử lí gọn hơn ở html
           // for(let i = 0; i<data.length; i++){
@@ -70,14 +68,11 @@ export class ListOfClassesComponent implements OnInit {
     console.log("OK");
     level =  this.level;
     other =  this.other;
-
+    if (other === undefined) {
+      other = "";
+    }
     console.log(level);
     console.log(other);
-
-    // data:FormData;
-    // this.data.append("level", level);
-    // this.data.append("other", other);
-
     this.registerjpservice.getWithConditions(this.level, this.other).subscribe(data => {
       console.log(data);
       this.currentCourses = data
@@ -94,6 +89,9 @@ export class ListOfClassesComponent implements OnInit {
       this.currentCourses = data
       //console.log(data);
     })
+  }
+  toDetail(id: number){
+    this.router.navigateByUrl("/detail-of-class/"+id);
   }
 
 }

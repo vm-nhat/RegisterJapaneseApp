@@ -8,13 +8,17 @@ import { Component, OnInit, ViewChild  } from '@angular/core';
 })
 export class AppComponent {
   title = 'RegisterJapaneseApp';
-  // hidebav = false;
   showmenu: boolean = true;
-  fnShowMenu(value)
-  {
-    this.showmenu = value;
-    console.log( this.showmenu);
+  // fnShowMenu(value)
+  // {
+  //   console.log("Đã nhận");
+  //   this.showmenu = value;
+  //   console.log(value);
+  // }
+  showNav() {
+    console.log("moi");
 
+    this.showmenu = !this.showmenu;
   }
 }
 
