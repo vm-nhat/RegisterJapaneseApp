@@ -16,12 +16,22 @@ export class detailOfClass  {
 }
 
 export class TimeTable {
-  endTime: string;
+endTime: string;
 id: number;
 startTime: string;
 weeksday: string;
 
 }
 export class UsersCourses {
-
+  user = {
+"birthDate": "Date",
+"department": "string",
+"email": "string",
+"fullName": "string",
+"id": "number",
+"jlptLevel": "string",
+"phone": "string",
+"sex": "number",
+"usersCode": "string",
+  }
 }

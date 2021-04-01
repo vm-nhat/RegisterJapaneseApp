@@ -9,51 +9,51 @@
         <tbody>
           <tr>
             <td class="text-center">Tên lớp học</td>
-            <td>{{dataCourses.coursesName}}</td>
+            <td>{{dataCourses?.coursesName}}</td>
           </tr>
           <tr>
             <td class="text-center">Cấp độ</td>
-            <td></td>
+            <td>{{dataCourses?.coursesLevel}}</td>
           </tr>
           <tr>
             <td class="text-center">Ngày bắt đầu</td>
-            <td></td>
+            <td>{{dataCourses?.startDate | date:'yyyy-MM-dd' }}</td>
           </tr>
           <tr>
             <td class="text-center">Ngày kết thúc</td>
-            <td></td>
+            <td>{{dataCourses?.endDate | date:'yyyy-MM-dd'}}</td>
           </tr>
           <tr>
             <td class="text-center">Giáo viên</td>
-            <td></td>
+            <td>{{dataCourses?.teacher}}</td>
           </tr>
           <tr>
             <td class="text-center">Phòng học</td>
-            <td></td>
+            <td>{{dataCourses?.room}}</td>
           </tr>
           <tr>
             <td class="text-center">Thời gian học</td>
             <td >
-              <span></span>
+              <span *ngFor = "let data of dataTime" >{{data.weeksday}}:{{data.startTime}} - {{data.endTime}}<br></span>
 
 
             </td>
           </tr>
           <tr>
             <td class="text-center">Trạng thái</td>
-            <td></td>
+            <td>{{dataCourses?.status ==  1 ? "Chờ mở lớp" : dataCourses?.status == 2 ? "Đang học" : "Đã hết hạn đăng ký" }}</td>
           </tr>
           <tr>
             <td class="text-center">Số học viên tối đa</td>
-            <td></td>
+            <td>{{dataCourses?.maxMember}}</td>
           </tr>
           <tr>
             <td class="text-center">Số học viên hiện tại</td>
-            <td></td>
+            <td>{{dataCourses?.currentMember}}</td>
           </tr>
           <tr>
             <td class="text-center">Thời hạn đăng ký</td>
-            <td></td>
+            <td>{{dataCourses?.deadline | date:'yyyy-MM-dd'}}</td>
           </tr>
           <tr>
             <td colspan="2" class="bg-info h5 registration text-light text-center"> Đăng ký</td>
@@ -78,17 +78,17 @@
           <!-- <th scope="col">Thời gian đăng ký</th> -->
         </tr>
       </thead>
-      <tbody >
+      <tbody *ngFor="let data of dataUsersCourses">
         <tr>
           <th></th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td>{{data.user.usersCode}}</td>
+          <td>{{data.user.fullName}}</td>
+          <td>{{data.user.sex == 1 ? "Nam" : "Nữ"}}</td>
+          <td>{{data.user.birthDate}}</td>
+          <td>{{data.user.phone}}</td>
+          <td>{{data.user.email}}</td>
+          <td>{{data.user.department}}</td>
+          <td>{{data.user.jlptLevel}}</td>
           <!-- <td></td> -->
           </tr>
       </tbody>
