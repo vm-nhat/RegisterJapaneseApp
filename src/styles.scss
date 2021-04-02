@@ -29,6 +29,7 @@ $RegisterJapaneseApp-theme: mat-light-theme($RegisterJapaneseApp-primary, $Regis
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 
+
 #wrapper {
   overflow-x: hidden;
 }
@@ -76,3 +77,5 @@ margin-left: 0;
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Importing Bootstrap SCSS file. */

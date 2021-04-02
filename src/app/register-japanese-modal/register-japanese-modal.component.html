@@ -1,0 +1,74 @@
+<div class="card-body">
+  <form class="form-group " [formGroup]="regesterForm">
+
+
+    <label for="">Mã nhân viên:</label><br>
+    <span class="input-group-prepend mb-3">
+      <span class="input-group-text">
+        <i class="fa fa-address-card"></i>
+      </span>
+      <input type="text"  class="form-control" formControlName="userId"><br>
+    </span>
+    <label for="lname">Họ và tên:</label><br>
+    <span class="input-group-prepend mb-3">
+      <span class="input-group-text">
+        <i class="fa fa-users"></i>
+      </span>
+      <input type="text" class="form-control" formControlName="fullName"><br><br>
+    </span>
+    <label for="">Giới tính:</label><br>
+    <div class="form-check">
+
+      <label class="styleGender">Nam
+        <input type="radio"  name="gender" value = 1>
+        <span class="checkmark" ></span>
+      </label>
+
+      <label class="styleGender ml-3">Nữ
+        <input type="radio" name="gender" value = 2>
+        <span class="checkmark" ></span>
+      </label>
+
+  </div>
+    <label for="lname">Ngày sinh:</label><br>
+    <!-- <app-datepicker-popup (selectDate)="dataDate($event);"></app-datepicker-popup> -->
+    <label for="">Số điện thoại:</label><br>
+    <span class="input-group-prepend mb-3">
+      <span class="input-group-text">
+        <i class="fa fa-phone"></i>
+      </span>
+      <input type="text" class="form-control" formControlName="phone"><br>
+    </span>
+    <label for="lname">Email:</label><br>
+    <span class="input-group-prepend mb-3">
+      <span class="input-group-text">
+        <i class="fa fa-envelope-square"></i>
+      </span>
+      <input type="text" class="form-control" formControlName="email"><br><br>
+    </span>
+
+    <label for="">Bộ phận:</label><br>
+    <span class="input-group-prepend mb-3">
+      <span class="input-group-text">
+        <i class="fa fa-asterisk"></i>     </span>
+      <input type="text" class="form-control" formControlName="department"><br>
+    </span>
+
+
+    <label for="lname">Cấp độ hiện tại:</label><br>
+    <select type="text" class="form-control" formControlName="jlptLevel">
+      <option value="N1">N1</option>
+      <option value="N2">N2</option>
+      <option value="N3">N3</option>
+      <option value="N4">N4</option>
+      <option value="N5"> N5</option>
+    </select>
+    <br><br>
+    {{regesterForm.value | json}}
+
+    <div class="modal-footer">
+      <!-- <button type="button" style="width: 30%" class="btn btn-outline-dark text-light bg-primary" (click)="activeModal.close(regesterForm.value)">Save</button> -->
+    </div>
+
+  </form>
+</div>

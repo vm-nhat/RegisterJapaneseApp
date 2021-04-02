@@ -53,9 +53,9 @@
             <th scope="col">Thao tác</th>
           </tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let courses of currentCourses">
-            <th></th>
+        <tbody  *ngFor="let courses of currentCourses;let i = index">
+          <tr>
+            <th>{{i+1}}</th>
             <td>{{courses.coursesName}}</td>
             <td>{{courses.coursesLevel}}</td>
             <td>{{courses.startDate | date:'yyyy-MM-dd'}}</td>

@@ -2,6 +2,8 @@ import { detailOfClass, TimeTable, UsersCourses } from './../entity/detail-class
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RegisterJpService } from '../Services/Web/register-jp.service';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { RegisterJapaneseModalComponent } from '../register-japanese-modal/register-japanese-modal.component';
 
 @Component({
   selector: 'app-detail-of-class',
@@ -10,12 +12,13 @@ import { RegisterJpService } from '../Services/Web/register-jp.service';
 })
 export class DetailOfClassComponent implements OnInit {
 
-  constructor(private registerjpservice: RegisterJpService, private _router: ActivatedRoute) { }
+  constructor(private registerjpservice: RegisterJpService, private _router: ActivatedRoute, private modalService: NgbModal) { }
 
   courseId: number;
   dataCourses: detailOfClass;
   public dataTime: TimeTable[] = [];
   public dataUsersCourses: UsersCourses[] = [];
+  closeResult = "";
 
   ngOnInit(): void {
     this.courseId = Number(this._router.snapshot.paramMap.get("id"));
@@ -47,8 +50,26 @@ export class DetailOfClassComponent implements OnInit {
       usersCourse.user.usersCode = this.dataUsersCourses[i].user.usersCode;
       this.dataUsersCourses.push(usersCourse);
     }
-    
+  }
 
+  open() {
+    this.modalService.open(RegisterJapaneseModalComponent).result.then((result) => {
+
+        console.log(result)
+
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 
 

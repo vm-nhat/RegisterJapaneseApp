@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -10,12 +10,15 @@ import {MatIconModule} from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { DetailOfClassComponent } from './detail-of-class/detail-of-class.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RegisterJapaneseModalComponent } from './register-japanese-modal/register-japanese-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
     ListOfClassesComponent,
     SidebarAppComponent,
-    DetailOfClassComponent
+    DetailOfClassComponent,
+    RegisterJapaneseModalComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,8 @@ import { DetailOfClassComponent } from './detail-of-class/detail-of-class.compon
     HttpClientModule,
     CommonModule,
     FormsModule,
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
