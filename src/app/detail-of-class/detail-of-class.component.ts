@@ -67,7 +67,7 @@ export class DetailOfClassComponent implements OnInit {
         this.pageSize = data['pageSize']
         this.totalElement = data['totalElement'];
         console.log(data);
-        console.log(this.pageSize);
+        console.log(this.page);
     })
 
 
@@ -84,11 +84,17 @@ export class DetailOfClassComponent implements OnInit {
 
       this.registerjpservice.saveMemberOfList(reqMember).subscribe(data => {
         console.log(data);
-        this.registerjpservice.getListOfClassPaging(this.courseId).subscribe(data => {
-          this.dataListClassMember = data['data'];
+        const req =
+    {
+      id: this.courseId,
+      pageNum:   this.page
+    }
+    this.loadListHavePaging(req);
+        // this.registerjpservice.getListOfClassPaging(this.courseId).subscribe(data => {
+        //   this.dataListClassMember = data['data'];
           //console.log(this.dataUsersCourses);
-        })
-       this.page = 5;
+        // })
+
       })
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -105,8 +111,6 @@ export class DetailOfClassComponent implements OnInit {
     }
   }
 
-
-
   pgChange(event)
   {
     console.log(event)
@@ -116,17 +120,24 @@ export class DetailOfClassComponent implements OnInit {
       pageNum:   event
     }
     console.log(req);
+    this.loadListHavePaging(req);
+    // this.registerjpservice.getListOfClassPaging(req).subscribe(data => {
+    //     this.dataListClassMember = data['data'];
+    //     this.page = data['pageNum'];
+    //     this.pageSize = data['pageSize']
+    //     this.totalElement = data['totalElement'];
+    //     console.log(data);
+    // })
+  }
+  loadListHavePaging(req: any) {
 
     this.registerjpservice.getListOfClassPaging(req).subscribe(data => {
-        this.dataListClassMember = data['data'];
-        this.page = data['pageNum'];
-        this.pageSize = data['pageSize']
-        this.totalElement = data['totalElement'];
-        console.log(data);
-
-
-    })
-
+      this.dataListClassMember = data['data'];
+      this.page = data['pageNum'];
+      this.pageSize = data['pageSize']
+      this.totalElement = data['totalElement'];
+      console.log(data);
+  })
   }
 
 
