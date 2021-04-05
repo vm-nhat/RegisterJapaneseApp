@@ -9,7 +9,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class RegisterJapaneseModalComponent implements OnInit {
   regesterForm= new FormGroup({
-    userId: new FormControl(''),
+    userCode: new FormControl(""),
     fullName: new FormControl(''),
     email: new FormControl(''),
     department: new FormControl(''),
@@ -22,5 +22,10 @@ export class RegisterJapaneseModalComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  dataDate(event)
+  {
+    console.log(event);
 
+  this.regesterForm.controls.birthDate.patchValue(event)
+  }
 }

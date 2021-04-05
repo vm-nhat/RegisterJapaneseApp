@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RegisterJpService } from '../Services/Web/register-jp.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterJapaneseModalComponent } from '../register-japanese-modal/register-japanese-modal.component';
+import { UsersCoursesPaging } from '../entity/UsersCourses';
 
 @Component({
   selector: 'app-detail-of-class',
@@ -11,10 +12,14 @@ import { RegisterJapaneseModalComponent } from '../register-japanese-modal/regis
   styleUrls: ['./detail-of-class.component.scss']
 })
 export class DetailOfClassComponent implements OnInit {
+  page = 1;
+  pageSize = 0;
+  totalElement = 0;
 
   constructor(private registerjpservice: RegisterJpService, private _router: ActivatedRoute, private modalService: NgbModal) { }
 
   courseId: number;
+  dataListClassMember: UsersCoursesPaging[] = [];
   dataCourses: detailOfClass;
   public dataTime: TimeTable[] = [];
   public dataUsersCourses: UsersCourses[] = [];
@@ -37,26 +42,54 @@ export class DetailOfClassComponent implements OnInit {
       studyTime.endTime = this.dataTime[i].endTime;
       this.dataTime.push(studyTime);
     }
-    for (let i = 0; i < this.dataUsersCourses.length; i++) {
-      let usersCourse: UsersCourses = new UsersCourses();
-      usersCourse.user.id = this.dataUsersCourses[i].user.id;
-      usersCourse.user.fullName = this.dataUsersCourses[i].user.fullName;
-      usersCourse.user.birthDate = this.dataUsersCourses[i].user.birthDate;
-      usersCourse.user.email = this.dataUsersCourses[i].user.email;
-      usersCourse.user.department = this.dataUsersCourses[i].user.department;
-      usersCourse.user.phone = this.dataUsersCourses[i].user.phone;
-      usersCourse.user.jlptLevel = this.dataUsersCourses[i].user.jlptLevel;
-      usersCourse.user.sex = this.dataUsersCourses[i].user.sex;
-      usersCourse.user.usersCode = this.dataUsersCourses[i].user.usersCode;
-      this.dataUsersCourses.push(usersCourse);
+    // for (let i = 0; i < this.dataUsersCourses.length; i++) {
+    //   let usersCourse: UsersCourses = new UsersCourses();
+    //   usersCourse.user.id = this.dataUsersCourses[i].user.id;
+    //   usersCourse.user.fullName = this.dataUsersCourses[i].user.fullName;
+    //   usersCourse.user.birthDate = this.dataUsersCourses[i].user.birthDate;
+    //   usersCourse.user.email = this.dataUsersCourses[i].user.email;
+    //   usersCourse.user.department = this.dataUsersCourses[i].user.department;
+    //   usersCourse.user.phone = this.dataUsersCourses[i].user.phone;
+    //   usersCourse.user.jlptLevel = this.dataUsersCourses[i].user.jlptLevel;
+    //   usersCourse.user.sex = this.dataUsersCourses[i].user.sex;
+    //   usersCourse.user.userCode = this.dataUsersCourses[i].user.userCode;
+    //   this.dataUsersCourses.push(usersCourse);
+    // }
+    const req =
+    {
+     id: this.courseId
     }
+    console.log(req);
+
+    this.registerjpservice.getListOfClassPaging(req).subscribe(data => {
+        this.dataListClassMember = data['data'];
+        this.page = data['pageNum'];
+        this.pageSize = data['pageSize']
+        this.totalElement = data['totalElement'];
+        console.log(data);
+        console.log(this.pageSize);
+    })
+
+
   }
 
   open() {
     this.modalService.open(RegisterJapaneseModalComponent).result.then((result) => {
+      //console.log(result)
+      const reqMember = {
+        ...result,
+        coursesId: this.courseId
+      }
+      console.log(reqMember);
 
-        console.log(result)
-
+      this.registerjpservice.saveMemberOfList(reqMember).subscribe(data => {
+        console.log(data);
+        this.registerjpservice.getListOfClassPaging(this.courseId).subscribe(data => {
+          this.dataListClassMember = data['data'];
+          //console.log(this.dataUsersCourses);
+        })
+       this.page = 5;
+      })
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
@@ -70,6 +103,30 @@ export class DetailOfClassComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+
+
+  pgChange(event)
+  {
+    console.log(event)
+    const req =
+    {
+      id: this.courseId,
+      pageNum:   event
+    }
+    console.log(req);
+
+    this.registerjpservice.getListOfClassPaging(req).subscribe(data => {
+        this.dataListClassMember = data['data'];
+        this.page = data['pageNum'];
+        this.pageSize = data['pageSize']
+        this.totalElement = data['totalElement'];
+        console.log(data);
+
+
+    })
+
   }
 
 

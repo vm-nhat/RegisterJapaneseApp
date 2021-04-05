@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { UsersCoursesPaging } from 'src/app/entity/UsersCourses';
 
 
 @Injectable({
@@ -35,9 +36,16 @@ export class RegisterJpService {
   getCoursesById(id: number): Observable<any>{
       console.log(id)
 
-      return this.http.get(`${this.baseUrl}` +"/"+ id);
+    return this.http.get(`${this.baseUrl}` + id);
+    }
+  saveMemberOfList(data: string){
+      console.log(data);
+    return this.http.post(`${this.baseUrl}` + 'saveMember',data)
+    }
 
-
+  getListOfClassPaging(data: any){
+      // console.log(data)
+      return this.http.post<UsersCoursesPaging>(`${this.baseUrl}` + 'listOfClassMember', data)
     }
 
 }

@@ -78,20 +78,21 @@
           <!-- <th scope="col">Thời gian đăng ký</th> -->
         </tr>
       </thead>
-      <tbody *ngFor="let data of dataUsersCourses; let i = index">
+      <tbody *ngFor="let data of dataListClassMember; let i = index">
         <tr>
           <th>{{i+1}}</th>
-          <td>{{data.user.usersCode}}</td>
-          <td>{{data.user.fullName}}</td>
-          <td>{{data.user.sex == 1 ? "Nam" : "Nữ"}}</td>
-          <td>{{data.user.birthDate}}</td>
-          <td>{{data.user.phone}}</td>
-          <td>{{data.user.email}}</td>
-          <td>{{data.user.department}}</td>
-          <td>{{data.user.jlptLevel}}</td>
+          <td>{{data.userCode}}</td>
+          <td>{{data.fullName}}</td>
+          <td>{{data.sex == 1 ? "Nam" : "Nữ"}}</td>
+          <td>{{data.birthDate}}</td>
+          <td>{{data.phone}}</td>
+          <td>{{data.email}}</td>
+          <td>{{data.department}}</td>
+          <td>{{data.jlptLevel}}</td>
           <!-- <td></td> -->
           </tr>
       </tbody>
     </table>
   </div>
+  <ngb-pagination class="d-flex justify-content-end" [collectionSize]="totalElement" [pageSize]="pageSize" [(page)]="page" (pageChange) ="pgChange($event)"  ></ngb-pagination>
 </div>

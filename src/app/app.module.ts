@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { DetailOfClassComponent } from './detail-of-class/detail-of-class.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterJapaneseModalComponent } from './register-japanese-modal/register-japanese-modal.component';
+import { NgbdDatepickerPopupModule } from './datepicker-popup/datepicker-popup.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { RegisterJapaneseModalComponent } from './register-japanese-modal/regist
     CommonModule,
     FormsModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbdDatepickerPopupModule
   ],
   providers: [],
   bootstrap: [AppComponent]

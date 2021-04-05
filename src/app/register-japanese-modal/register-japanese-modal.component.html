@@ -1,3 +1,13 @@
+<div class=" bg-primary p-3" >
+  <button type="button"  class="float-right btn btn-secondary" (click) = activeModal.close() aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
+  <div class= "text-center">
+
+  <h2 class="modal-title text-center text-light" id="exampleModalLabel">THÔNG TIN CÁ NHÂN</h2>
+</div>
+</div>
+
 <div class="card-body">
   <form class="form-group " [formGroup]="regesterForm">
 
@@ -7,7 +17,7 @@
       <span class="input-group-text">
         <i class="fa fa-address-card"></i>
       </span>
-      <input type="text"  class="form-control" formControlName="userId"><br>
+      <input type="text"  class="form-control" formControlName="userCode"><br>
     </span>
     <label for="lname">Họ và tên:</label><br>
     <span class="input-group-prepend mb-3">
@@ -20,18 +30,18 @@
     <div class="form-check">
 
       <label class="styleGender">Nam
-        <input type="radio"  name="gender" value = 1>
+        <input type="radio"  value = 1 formControlName="sex">
         <span class="checkmark" ></span>
       </label>
 
       <label class="styleGender ml-3">Nữ
-        <input type="radio" name="gender" value = 2>
+        <input type="radio" value = 2 formControlName="sex">
         <span class="checkmark" ></span>
       </label>
 
   </div>
     <label for="lname">Ngày sinh:</label><br>
-    <!-- <app-datepicker-popup (selectDate)="dataDate($event);"></app-datepicker-popup> -->
+    <app-datepicker-popup (selectDate)="dataDate($event);"></app-datepicker-popup>
     <label for="">Số điện thoại:</label><br>
     <span class="input-group-prepend mb-3">
       <span class="input-group-text">
@@ -64,10 +74,10 @@
       <option value="N5"> N5</option>
     </select>
     <br><br>
-    {{regesterForm.value | json}}
+    <!-- {{regesterForm.value | json}} -->
 
     <div class="modal-footer">
-      <!-- <button type="button" style="width: 30%" class="btn btn-outline-dark text-light bg-primary" (click)="activeModal.close(regesterForm.value)">Save</button> -->
+      <button type="button" style="width: 30%" class="btn btn-outline-dark text-light bg-primary" (click)="activeModal.close(regesterForm.value)">Save</button>
     </div>
 
   </form>

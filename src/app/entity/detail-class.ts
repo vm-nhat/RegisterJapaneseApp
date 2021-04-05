@@ -32,6 +32,6 @@ export class UsersCourses {
 "jlptLevel": "string",
 "phone": "string",
 "sex": "number",
-"usersCode": "string",
+"userCode": "string",
   }
 }
