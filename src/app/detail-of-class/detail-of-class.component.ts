@@ -57,17 +57,17 @@ export class DetailOfClassComponent implements OnInit {
     // }
     const req =
     {
-     id: this.courseId
+      id: this.courseId
     }
     console.log(req);
 
     this.registerjpservice.getListOfClassPaging(req).subscribe(data => {
-        this.dataListClassMember = data['data'];
-        this.page = data['pageNum'];
-        this.pageSize = data['pageSize']
-        this.totalElement = data['totalElement'];
-        console.log(data);
-        console.log(this.page);
+      this.dataListClassMember = data['data'];
+      this.page = data['pageNum'];
+      this.pageSize = data['pageSize']
+      this.totalElement = data['totalElement'];
+      console.log(data);
+      console.log(this.page);
     })
 
 
@@ -84,15 +84,20 @@ export class DetailOfClassComponent implements OnInit {
 
       this.registerjpservice.saveMemberOfList(reqMember).subscribe(data => {
         console.log(data);
+        //console.log(this.page);
+        let pageReload: number = Math.floor(this.totalElement/this.pageSize) + 1;
+        console.log(pageReload);
+
         const req =
-    {
-      id: this.courseId,
-      pageNum:   this.page
-    }
-    this.loadListHavePaging(req);
+        {
+          id: this.courseId,
+          pageNum: pageReload
+        }
+        console.log(this.totalElement);
+        this.loadListHavePaging(req);
         // this.registerjpservice.getListOfClassPaging(this.courseId).subscribe(data => {
         //   this.dataListClassMember = data['data'];
-          //console.log(this.dataUsersCourses);
+        //console.log(this.dataUsersCourses);
         // })
 
       })
@@ -111,13 +116,12 @@ export class DetailOfClassComponent implements OnInit {
     }
   }
 
-  pgChange(event)
-  {
+  pgChange(event) {
     console.log(event)
     const req =
     {
       id: this.courseId,
-      pageNum:   event
+      pageNum: event
     }
     console.log(req);
     this.loadListHavePaging(req);
@@ -137,7 +141,7 @@ export class DetailOfClassComponent implements OnInit {
       this.pageSize = data['pageSize']
       this.totalElement = data['totalElement'];
       console.log(data);
-  })
+    })
   }
 
 
